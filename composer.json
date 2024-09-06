@@ -1,0 +1,10 @@
+{
+  "name": "ahmad/simple-framework",
+  "description": "A simple PHP-MVC framework",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
