@@ -21,6 +21,6 @@ require_once '../routes/web.php';
 
 function dd($item)
 {
-    echo $item;
+    print_r($item);
     die();
 }
