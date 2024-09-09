@@ -23,8 +23,7 @@ class UserController
 
     public function all()
     {
-        $users = $this->userModel->getAllUsers();
-        return $users;
+        return $this->userModel->getAllUsers();
     }
 
 }

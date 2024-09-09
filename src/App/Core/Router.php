@@ -23,7 +23,7 @@ class Router {
                 if (method_exists($controllerObject, $actionName))
                 {
 
-                    echo $controllerObject->$actionName();
+                    print_r($controllerObject->$actionName());
                 }
                 else
                 {
@@ -37,7 +37,7 @@ class Router {
         }
         else
         {
-            echo "No route matched.";
+            echo "Error 404";
         }
     }
 
