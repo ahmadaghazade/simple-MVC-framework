@@ -1,6 +1,7 @@
 <?php
 
-$router->add('users', ['controller' => 'UserController', 'action' => 'all']);
+$router->add('show/{id}', ['controller' => 'UserController', 'action' => 'show']);
+$router->add('show', ['controller' => 'UserController', 'action' => 'all']);
 //$router->add('about', ['controller' => 'AboutController', 'action' => 'index']);
 //$router->add('posts/show', ['controller' => 'PostController', 'action' => 'show']);
 

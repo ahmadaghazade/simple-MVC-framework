@@ -3,6 +3,7 @@
 namespace App\App\Controllers;
 
 use App\App\Models\User;
+use App\App\Core\View;
 
 class UserController
 {
@@ -15,15 +16,24 @@ class UserController
     public function show($id)
     {
         $user = $this->userModel->getUserById($id);
-        if ($user)
-        {
-            echo $user;
-        }
+        var_dump($user);
     }
 
     public function all()
     {
-        return $this->userModel->getAllUsers();
+        $data = ['name' => 'ahmad'];
+        $view = new View($data);
+        $view->render('home');
+
+//        $users = $this->userModel->getAllUsers();
+//        if ($users)
+//        {
+////            var_dump($users);
+//            foreach ($users as $user)
+//            {
+//                echo $user['name'];
+//            }
+//        }
     }
 
 }
