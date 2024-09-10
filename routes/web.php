@@ -1,9 +1,12 @@
 <?php
 
-$router->add('show/{id}', ['controller' => 'UserController', 'action' => 'show']);
-$router->add('show', ['controller' => 'UserController', 'action' => 'all']);
-//$router->add('about', ['controller' => 'AboutController', 'action' => 'index']);
-//$router->add('posts/show', ['controller' => 'PostController', 'action' => 'show']);
+// Admin Routes
+$router->add(
+    'admin/dashboard', [
+        'controller' => 'AdminController',
+        'action'     => 'index',
+    ]
+);
 
 
 $url = trim($_SERVER['REQUEST_URI'], '/');

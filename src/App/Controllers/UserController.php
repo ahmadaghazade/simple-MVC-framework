@@ -21,9 +21,9 @@ class UserController
 
     public function all()
     {
-        $data = ['name' => 'ahmad'];
-        $view = new View($data);
-        $view->render('admin.home');
+//        $data = ['name' => 'ahmad'];
+        $view = new View();
+        $view->render('admin.index');
 
 //        $users = $this->userModel->getAllUsers();
 //        if ($users)
