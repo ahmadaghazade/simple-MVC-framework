@@ -23,7 +23,7 @@ class UserController
     {
         $data = ['name' => 'ahmad'];
         $view = new View($data);
-        $view->render('home');
+        $view->render('admin.home');
 
 //        $users = $this->userModel->getAllUsers();
 //        if ($users)

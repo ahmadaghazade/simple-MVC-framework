@@ -13,7 +13,8 @@ class View
 
     public function render(string $viewFile): void
     {
-        $filePath = __DIR__ . '/../../views/'.$viewFile . '.php';
+        $directory = explode('.', $viewFile);
+        $filePath = __DIR__ . '/../../views/'. $directory[0] . '/' . $directory[1] . '.php';
         if (file_exists($filePath)){
             extract($this->data);
             include $filePath;
