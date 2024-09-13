@@ -21,19 +21,8 @@ class UserController
 
     public function all()
     {
-//        $data = ['name' => 'ahmad'];
         $view = new View();
         $view->render('admin.index');
-
-//        $users = $this->userModel->getAllUsers();
-//        if ($users)
-//        {
-////            var_dump($users);
-//            foreach ($users as $user)
-//            {
-//                echo $user['name'];
-//            }
-//        }
     }
 
 }
