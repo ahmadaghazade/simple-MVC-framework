@@ -22,6 +22,12 @@
                                     <p>تنظیمات سایت</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/admin/dashboard/brands" class="nav-link active">
+                                    <i class="fa nav-icon"></i>
+                                    <p>برند ها</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
