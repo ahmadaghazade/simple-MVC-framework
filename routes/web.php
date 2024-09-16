@@ -66,6 +66,25 @@ $router->add(
     ]
 );
 
+// services routes ####################################################
+$router->add(
+    'admin/dashboard/services', [
+        'controller' => 'ServiceController',
+        'action'     => 'index',
+    ]
+);
+$router->add(
+    'admin/dashboard/service/create', [
+        'controller' => 'ServiceController',
+        'action'     => 'create',
+    ]
+);
+$router->add(
+    'admin/dashboard/service/store', [
+        'controller' => 'ServiceController',
+        'action'     => 'store',
+    ]
+);
 
 
 

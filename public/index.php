@@ -32,3 +32,8 @@ function getBaseUrl() {
 
     return $protocol . $host . $baseDir;
 }
+
+function request()
+{
+    dd($_POST);
+}

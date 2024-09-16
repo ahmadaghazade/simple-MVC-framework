@@ -28,6 +28,12 @@
                                     <p>برند ها</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/admin/dashboard/services" class="nav-link active">
+                                    <i class="fa nav-icon"></i>
+                                    <p>خدمات ما</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
