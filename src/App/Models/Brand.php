@@ -14,24 +14,19 @@ class Brand
                             ->getConnection();
     }
 
-    public function insertBrand($data)
-    {
-
-    }
-    public function updateBrand($data, $id)
-    {
-
-    }
-    public function deleteBrand($id)
-    {
-
-    }
-
     public function getAllBrands()
     {
         $stmt = $this->db->prepare("SELECT * FROM brands");
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public function findBrand($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM brands WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
 }

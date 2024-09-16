@@ -50,21 +50,24 @@
                                     <th>شماره</th>
                                     <th>لوگو</th>
                                 </tr>
+                                <?php foreach ($brands as $brand){ ?>
                                 <tr>
-                                    <?= foreach ($brands as $brand){ ?>
                                     <td><?= $brand['id'] ?></td>
-                                    <?= } ?>
                                     <td>
-                                        <a href="/admin/dashboard/brands/edit/" class="btn btn-app">
+                                        <img src="<?php echo $brand['image_url']; ?>">
+                                    </td>
+                                    <td>
+                                        <a href="/admin/dashboard/brand/edit/<?php echo $brand['id']?>" class="btn btn-app">
                                             <i class="fa fa-edit"></i>
                                             ویرایش
                                         </a>
-                                        <a href="/admin/dashboard/brands/edit/" class="btn btn-app">
+                                        <a href="/admin/dashboard/brand/delete/<?php echo $brand['id']?>" class="btn btn-app">
                                             <i class="fa fa-close"></i>
                                             حذف
                                         </a>
                                     </td>
                                 </tr>
+                                <?php } ?>
                             </table>
                         </div>
                         <!-- /.card-body -->

@@ -24,11 +24,46 @@ class BrandController
         $view->render('admin.brand');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $settings = $this->settingModel->getAllSettings();
-        $view     = new View(['settings' => $settings]);
-        $view->render('admin.editsetting');
+        $brand = $this->brandModel->findBrand($id);
+        $view = new View(['brand' => $brand]);
+        $view->render('admin.edit_brand');
+    }
+
+    public function update($id)
+    {
+        $brand = $this->brandModel->findBrand($id);
+        $parsedUrl = parse_url($brand['image_url'], PHP_URL_PATH); // This gives "/uploads/brands/brand_img03.png"
+        $filePath = $_SERVER['DOCUMENT_ROOT'] . $parsedUrl;
+        if (file_exists($filePath) && $brand){
+            unlink($filePath);
+        }
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK){
+            $fileTmpPath = $_FILES['image']['tmp_name'];
+            $fileName = $_FILES['image']['name'];
+            $fileNameCmps = explode(".", $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
+            $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
+            if (in_array($fileExtension, $allowedFileTypes))
+            {
+                $uploadFileDirection = __DIR__ . '/../../../public/uploads/brands/';
+                $destinationPath = $uploadFileDirection . $fileName;
+                $realFilePath = getBaseUrl() . 'uploads/brands/' . $fileName;
+                if (move_uploaded_file($fileTmpPath, $destinationPath)) {
+                    $this->updateFile($id,$realFilePath);
+                    echo "File is successfully uploaded.";
+                    // You can store the file path in the database if needed
+                    // $this->saveImagePathToDatabase($dest_path);
+                } else {
+                    echo "There was an error moving the uploaded file.";
+                }
+            } else {
+                echo "Upload failed. Allowed file types: " . implode(", ", $allowedFileTypes);
+            }
+        } else {
+            echo "There was an error with the file upload.";
+        }
     }
 
     public function create(): void
@@ -68,12 +103,43 @@ class BrandController
 
     }
 
+    public function delete($id)
+    {
+        $stmt = $this->db->prepare("SELECT image_url FROM brands WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $brand = $stmt->fetch();
+        if ($brand && $brand['image_url']){
+            $parsedUrl = parse_url($brand['image_url'], PHP_URL_PATH); // This gives "/uploads/brands/brand_img03.png"
+            $filePath = $_SERVER['DOCUMENT_ROOT'] . $parsedUrl;
+            if (file_exists($filePath)){
+                unlink($filePath);
+            }
+        }
+        $stmt = $this->db->prepare("DELETE FROM brands WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        if ($stmt->execute())
+        {
+            echo "Brand with ID $id and associated file have been deleted successfully.";
+            header('Location: /admin/dashboard/brands'); // Redirect to the brands list after deletion
+            exit();
+        } else {
+            echo "Error deleting brand.";
+        }
+    }
+
     public function insertFileIntoDb($imagePath)
     {
         $stmt = $this->db->prepare("INSERT INTO brands (image_url) VALUES (:image_path)");
         $stmt->bindParam(':image_path', $imagePath);
         return $stmt->execute();
-
+    }
+    public function updateFile($id,$imagePath)
+    {
+        $stmt = $this->db->prepare("UPDATE brands SET image_url = :image_url WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':image_url', $imagePath);
+        return $stmt->execute();
     }
 
 

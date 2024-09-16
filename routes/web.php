@@ -47,6 +47,25 @@ $router->add(
         'action'     => 'store',
     ]
 );
+$router->add(
+    'admin/dashboard/brand/edit/{id}', [
+        'controller' => 'BrandController',
+        'action'     => 'edit',
+    ]
+);
+$router->add(
+    'admin/dashboard/brand/update/{id}', [
+        'controller' => 'BrandController',
+        'action'     => 'update',
+    ]
+);
+$router->add(
+    'admin/dashboard/brand/delete/{id}', [
+        'controller' => 'BrandController',
+        'action'     => 'delete',
+    ]
+);
+
 
 
 
