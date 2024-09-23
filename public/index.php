@@ -37,3 +37,7 @@ function request()
 {
     dd($_POST);
 }
+function requestedData()
+{
+    return $_POST;
+}

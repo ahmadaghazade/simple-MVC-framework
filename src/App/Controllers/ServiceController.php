@@ -75,22 +75,26 @@ class ServiceController
     public function store(): void
     {
         if (isset($_FILES['main_image']) && $_FILES['main_image']['error'] === UPLOAD_ERR_OK){
-            $fileTmpPath = $_FILES['image']['tmp_name'];
-            $fileName = $_FILES['image']['name'];
+            $fileTmpPath = $_FILES['main_image']['tmp_name'];
+            $fileName = $_FILES['main_image']['name'];
             $fileNameCmps = explode(".", $fileName);
             $fileExtension = strtolower(end($fileNameCmps));
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes))
             {
-
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/brands/';
+                $uploadFileDirection = __DIR__ . '/../../../public/uploads/services/';
                 $destinationPath = $uploadFileDirection . $fileName;
-                $realFilePath = getBaseUrl() . 'uploads/brands/' . $fileName;
+                $realFilePath = getBaseUrl() . 'uploads/services/' . $fileName;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
                     $this->insertFileIntoDb($realFilePath);
-                    echo "File is successfully uploaded.";
-                    // You can store the file path in the database if needed
-                    // $this->saveImagePathToDatabase($dest_path);
+                    $this->insertToDb(requestedData());
+                    if ($this->insertToDb(requestedData()))
+                    {
+                        echo "File is successfully uploaded.";
+                        // You can store the file path in the database if needed
+                        // $this->saveImagePathToDatabase($dest_path);
+                    }
+
                 } else {
                     echo "There was an error moving the uploaded file.";
                 }
@@ -128,12 +132,34 @@ class ServiceController
         }
     }
 
-    public function insertFileIntoDb($imagePath)
+    public function insertFileIntoDb($main_image)
     {
-        $stmt = $this->db->prepare("INSERT INTO brands (image_url) VALUES (:image_path)");
-        $stmt->bindParam(':image_path', $imagePath);
+        $stmt = $this->db->prepare("INSERT INTO services (main_image) VALUES (:main_image)");
+        $stmt->bindParam(':main_image', $main_image);
         return $stmt->execute();
     }
+
+    public function insertToDb($data)
+    {
+        $stmt = $this->db->prepare("INSERT INTO services (title, icon_class, main_image, main_content, description, created_at) VALUES (:title, :icon_class, :main_image, :main_content, :description, :created_at)");
+        try {
+            $stmt->bindParam(':title', $data['title']);
+            $stmt->bindParam(':icon_class', $data['icon_class']);
+            $stmt->bindParam(':main_image', $data['main_image']);
+            $stmt->bindParam(':main_content', $data['main_content']);
+            $stmt->bindParam(':description', $data['description']);
+            $stmt->bindParam(':created_at', $data['created_at']);
+            return $stmt->execute();
+        }
+        catch (\Exception $e)
+        {
+            dd($e);
+
+        }
+
+    }
+
+
     public function updateFile($id,$imagePath)
     {
         $stmt = $this->db->prepare("UPDATE brands SET image_url = :image_url WHERE id = :id");
