@@ -61,11 +61,11 @@
                                         <img src="<?php echo $service['main_image']; ?>">
                                     </td>
                                     <td>
-                                        <a href="/admin/dashboard/brand/edit/<?php echo $service['id']?>" class="btn btn-app">
+                                        <a href="/admin/dashboard/service/edit/<?php echo $service['id']?>" class="btn btn-app">
                                             <i class="fa fa-edit"></i>
                                             ویرایش
                                         </a>
-                                        <a href="/admin/dashboard/brand/delete/<?php echo $service['id']?>" class="btn btn-app">
+                                        <a href="/admin/dashboard/service/delete/<?php echo $service['id']?>" class="btn btn-app">
                                             <i class="fa fa-close"></i>
                                             حذف
                                         </a>

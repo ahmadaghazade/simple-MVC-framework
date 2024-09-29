@@ -14,7 +14,7 @@
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="/admin/dashboard/">خانه</a></li>
                         <li class="breadcrumb-item"><a href="/admin/dashboard/services">خدمات ما</a></li>
-                        <li class="breadcrumb-item active">ساخت خدمت جدید</li>
+                        <li class="breadcrumb-item active">ویرایش خدمت</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,31 +30,35 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">ساخت خدمت جدید</h3>
+                            <h3 class="card-title">ویرایش خدمت </h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="/admin/dashboard/service/store" method="post" enctype="multipart/form-data">
+                        <form action="/admin/dashboard/service/update/<?= $service['id'] ?>" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputTitle1">عنوان</label>
-                                    <input name="title" type="text" class="form-control" id="exampleInputTitle1" placeholder="عنوان را وارد کنید">
+                                    <input value="<?= $service['title'] ?>" name="title" type="text" class="form-control" id="exampleInputTitle1" placeholder="عنوان را وارد کنید">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputIconClass1">کلاس آیکون نمایشی</label>
-                                    <input name="icon_class" type="text" class="form-control" id="exampleInputIconClass1" placeholder="کلاس را وارد کنید">
+                                    <input value="<?= $service['icon_class'] ?>" name="icon_class" type="text" class="form-control" id="exampleInputIconClass1" placeholder="کلاس را وارد کنید">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputMainContent1">مقدار نمایش داده شده در صفحه اصلی</label>
-                                    <input name="main_content" type="text" class="form-control" id="exampleInputMainContent1" placeholder="">
+                                    <input value="<?= $service['main_content'] ?>" name="main_content" type="text" class="form-control" id="exampleInputMainContent1" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputDescription1">توضیحات کامل</label>
-                                    <textarea name="description" type="text" class="form-control" id="exampleInputDescription1" placeholder=""></textarea>
+                                    <textarea name="description" type="text" class="form-control" id="exampleInputDescription1" placeholder=""><?= $service['description'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>انتخاب فایل</label>
                                     <input name="main_image" type="file">
+                                </div>
+                                <div class="form-group">
+                                    <label>تصویر قبلی</label>
+                                    <img src=<?= $service['main_image'] ?>>
                                 </div>
                             </div>
                             <!-- /.card-body -->

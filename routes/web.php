@@ -85,6 +85,27 @@ $router->add(
         'action'     => 'store',
     ]
 );
+$router->add(
+    'admin/dashboard/service/delete/{id}', [
+        'controller' => 'ServiceController',
+        'action'     => 'delete',
+    ]
+);
+$router->add(
+    'admin/dashboard/service/edit/{id}', [
+        'controller' => 'ServiceController',
+        'action'     => 'edit',
+    ]
+);
+$router->add(
+    'admin/dashboard/service/update/{id}', [
+        'controller' => 'ServiceController',
+        'action'     => 'update',
+    ]
+);
+
+// home_page_content routes ####################################################
+
 
 
 
