@@ -34,6 +34,12 @@
                                     <p>خدمات ما</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/admin/dashboard/page_content" class="nav-link active">
+                                    <i class="fa nav-icon"></i>
+                                    <p>محتوای صفحات</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

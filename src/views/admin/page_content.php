@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="/admin/dashboard/">خانه</a></li>
-                        <li class="breadcrumb-item active">خدمات ما</li>
+                        <li class="breadcrumb-item active">محتوای صفحات</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -29,10 +29,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">جدول خدمات ما</h3>
+                            <h3 class="card-title">جدول صفحات</h3>
 
                             <div class="card-tools">
-                                <a href="/admin/dashboard/service/create" class="mr-1 btn btn-sm btn-success float-left">ساخت خدمت جدید</a>
+<!--                                <a href="/admin/dashboard/service/create" class="mr-1 btn btn-sm btn-success float-left">ساخت خدمت جدید</a>-->
 
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
@@ -48,28 +48,30 @@
                             <table class="table table-hover">
                                 <tr>
                                     <th>شماره</th>
-                                    <th>عنوان</th>
-                                    <th>خلاصه متن</th>
-                                    <th>تصویر</th>
-                                    <th>تنظیمات</th>
+                                    <th>سکشن</th>
+                                    <th>کلید</th>
+                                    <th>مقدار</th>
+                                    <th>مقداردهی</th>
                                 </tr>
-                                <?php foreach ($services as $service){ ?>
+                                <?php foreach ($contents as $content){ ?>
                                 <tr>
-                                    <td><?= $service['id'] ?></td>
-                                    <td><?= $service['title'] ?></td>
-                                    <td><?= $service['description'] ?></td>
+                                    <td><?= $content['id'] ?></td>
+                                    <td><?= $content['section'] ?></td>
+                                    <td><?= $content['key'] ?></td>
+                                    <?php if ($content['type'] === "file") { ?>
+                                        <td><img src="<?= $content['value'] ?>"</td>
+                                    <?php }else { ?>
+                                    <td><?= $content['value'] ?></td>
+                                    <?php } ?>
                                     <td>
-                                        <img src="<?php echo $service['main_image']; ?>">
-                                    </td>
-                                    <td>
-                                        <a href="/admin/dashboard/service/edit/<?php echo $service['id']?>" class="btn btn-app">
+                                        <a href="/admin/dashboard/page_content/edit/<?php echo $content['id']?>" class="btn btn-app">
                                             <i class="fa fa-edit"></i>
                                             ویرایش
                                         </a>
-                                        <a href="/admin/dashboard/service/delete/<?php echo $service['id']?>" class="btn btn-app">
-                                            <i class="fa fa-close"></i>
-                                            حذف
-                                        </a>
+<!--                                        <a href="/admin/dashboard/service/delete/--><?php //echo $service['id']?><!--" class="btn btn-app">-->
+<!--                                            <i class="fa fa-close"></i>-->
+<!--                                            حذف-->
+<!--                                        </a>-->
                                     </td>
                                 </tr>
                                 <?php } ?>

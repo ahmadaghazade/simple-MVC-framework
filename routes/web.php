@@ -105,6 +105,24 @@ $router->add(
 );
 
 // home_page_content routes ####################################################
+$router->add(
+    'admin/dashboard/page_content', [
+        'controller' => 'PageContentController',
+        'action'     => 'index',
+    ]
+);
+$router->add(
+    'admin/dashboard/page_content/edit/{id}', [
+        'controller' => 'PageContentController',
+        'action'     => 'edit',
+    ]
+);
+$router->add(
+    'admin/dashboard/page_content/update/{id}', [
+        'controller' => 'PageContentController',
+        'action'     => 'update',
+    ]
+);
 
 
 
