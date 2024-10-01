@@ -6,5 +6,8 @@
     "psr-4": {
       "App\\": "src/"
     }
+  },
+  "scripts" : {
+    "make:controller": "php console.php make:controller"
   }
 }
