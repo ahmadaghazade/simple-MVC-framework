@@ -30,6 +30,15 @@
     <link rel="stylesheet" href="/assets/admin/css/bootstrap-rtl.min.css">
     <!-- template rtl version -->
     <link rel="stylesheet" href="/assets/admin/css/custom-style.css">
+    <script src="https://cdn.tiny.cloud/1/klmbhv00qfbvueyehtlfp28dijds5iirq75w56yehagpy8ll/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            // plugins: 'media',
+            // toolbar: 'media',
+            // images_file_types: 'jpg,svg,webp'
+        });
+    </script>
 
 </head>
 <body class="hold-transition sidebar-mini">

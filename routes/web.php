@@ -123,6 +123,38 @@ $router->add(
         'action'     => 'update',
     ]
 );
+// blog routes ####################################################
+$router->add(
+    'admin/dashboard/blogs', [
+        'controller' => 'BlogController',
+        'action'     => 'index',
+    ]
+);
+$router->add(
+    'admin/dashboard/blog/create', [
+        'controller' => 'BlogController',
+        'action'     => 'create',
+    ]
+);
+$router->add(
+    'admin/dashboard/blog/store', [
+        'controller' => 'BlogController',
+        'action'     => 'store',
+    ]
+);
+$router->add(
+    'admin/dashboard/blog/edit/{id}', [
+        'controller' => 'BlogController',
+        'action'     => 'edit',
+    ]
+);
+$router->add(
+    'admin/dashboard/blog/delete/{id}', [
+        'controller' => 'BlogController',
+        'action'     => 'delete',
+    ]
+);
+
 
 
 
