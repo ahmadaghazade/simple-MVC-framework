@@ -48,12 +48,12 @@ class Router {
 
     private function removeQueryString($url) {
         if ($url != '') {
-            $parts = explode('&', $url, 2);
+            $parts = explode('?', $url, 2);
             if (strpos($parts[0], '=') === false) {
                 return rtrim($parts[0], '/');
             }
         }
-        return '';
+        return '/';
     }
 
     private function getNamespace() {
