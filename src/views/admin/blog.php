@@ -59,18 +59,18 @@
                                 <tr>
                                     <td><?= $blog['id'] ?></td>
                                     <td><?= $blog['title'] ?></td>
-                                    <td><?= $blog['description'] ?></td>
+                                    <td><?= substr($blog['description'], 0, 25) ?></td>
                                     <td>
-                                        <img src="<?php echo $blog['main_image']; ?>">
+                                        <img class="img-fluid" style="width: 150px; max-height: 80px" src="<?php echo $blog['main_image']; ?>">
                                     </td>
                                     <td><?= $blog['writer'] ?></td>
                                     <td><?= $blog['tags'] ?></td>
                                     <td>
-                                        <a href="/admin/dashboard/blog/edit/<?php echo $blog['id']?>" class="btn btn-app">
+                                        <a href="/admin/dashboard/blog/edit/<?php echo $blog['id']?>" class="btn btn-outline-danger">
                                             <i class="fa fa-edit"></i>
                                             ویرایش
                                         </a>
-                                        <a href="/admin/dashboard/blog/delete/<?php echo $blog['id']?>" class="btn btn-app">
+                                        <a href="/admin/dashboard/blog/delete/<?php echo $blog['id']?>" class="btn btn-danger">
                                             <i class="fa fa-close"></i>
                                             حذف
                                         </a>

@@ -31,20 +31,18 @@ class Blog
 
     public function updateDb($data, $id)
     {
-        $stmt = $this->db->prepare("UPDATE services 
-            SET title = :title,
-                icon_class = :icon_class,
-                main_image = :main_image,
-                main_content = :main_content,
-                description = :description,
-                created_at = :created_at 
+        $stmt = $this->db->prepare("UPDATE blogs
+            SET main_image = :main_image,
+                title = :title,
+                writer = :writer,
+                tags = :tags,
+                description = :description
             WHERE id = :id");
-        $stmt->bindParam(':title', $data['title']);
-        $stmt->bindParam(':icon_class', $data['icon_class']);
         $stmt->bindParam(':main_image', $data['main_image']);
-        $stmt->bindParam(':main_content', $data['main_content']);
+        $stmt->bindParam(':title', $data['title']);
+        $stmt->bindParam(':writer', $data['writer']);
+        $stmt->bindParam(':tags', $data['tags']);
         $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':created_at', $data['created_at']);
         $stmt->bindParam(':id', $id);
         if ($stmt->execute()) {
             echo "Update was successful!";

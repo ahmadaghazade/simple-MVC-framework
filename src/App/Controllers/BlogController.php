@@ -33,13 +33,13 @@ class BlogController
 
     public function update($id)
     {
-        $service = $this->serviceModel->findService($id);// finding the service
+        $blog = $this->BlogModel->findBlog($id);// finding the blog
         $data    = requestedData();
         if (isset($_FILES['main_image']) && $_FILES['main_image']['error'] === UPLOAD_ERR_OK) {
             // finding the previus image and delete it
-            $parsedUrl = parse_url($service['main_image'], PHP_URL_PATH); // This gives "/uploads/brands/brand_img03.png"
+            $parsedUrl = parse_url($blog['main_image'], PHP_URL_PATH); // This gives "/uploads/brands/brand_img03.png"
             $filePath  = $_SERVER['DOCUMENT_ROOT'] . $parsedUrl;
-            if (file_exists($filePath) && $service) {
+            if (file_exists($filePath) && $blog) {
                 unlink($filePath);
             }
 //            inserting the new image
@@ -49,9 +49,9 @@ class BlogController
             $fileExtension    = strtolower(end($fileNameCmps));
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes)) {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/services/';
+                $uploadFileDirection = __DIR__ . '/../../../public/uploads/blogs/';
                 $destinationPath     = $uploadFileDirection . $fileName;
-                $realFilePath        = getBaseUrl() . 'uploads/services/' . $fileName;
+                $realFilePath        = getBaseUrl() . 'uploads/blogs/' . $fileName;
                 $data['main_image']  = $realFilePath;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
                     $this->updateFile($id, $realFilePath);
@@ -66,8 +66,12 @@ class BlogController
                 echo "Upload failed. Allowed file types: " . implode(", ", $allowedFileTypes);
             }
 
+
         }
-        $update = $this->serviceModel->updateDb($data, $id);
+        else {
+            $data['main_image'] = $blog['main_image'];
+        }
+        $update = $this->BlogModel->updateDb($data, $id);
         if ($update) {
             echo "update was successful";
         }
@@ -120,7 +124,7 @@ class BlogController
 
     }
 
-    public function delete($id)
+    public function delete($id): void
     {
         $stmt = $this->db->prepare("SELECT * FROM blogs WHERE id = :id");
         $stmt->bindParam(':id', $id);
@@ -141,7 +145,7 @@ class BlogController
             header('Location: /admin/dashboard/blogs'); // Redirect to the brands list after deletion
             exit();
         } else {
-            echo "Error deleting service.";
+            echo "Error deleting blog.";
         }
     }
 
@@ -166,7 +170,7 @@ class BlogController
 
     public function updateFile($id,$imagePath)
     {
-        $stmt = $this->db->prepare("UPDATE services SET main_image = :main_image WHERE id = :id");
+        $stmt = $this->db->prepare("UPDATE blogs SET main_image = :main_image WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':main_image', $imagePath);
         return $stmt->execute();

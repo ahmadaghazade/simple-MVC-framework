@@ -149,6 +149,12 @@ $router->add(
     ]
 );
 $router->add(
+    'admin/dashboard/blog/update/{id}', [
+        'controller' => 'BlogController',
+        'action'     => 'update',
+    ]
+);
+$router->add(
     'admin/dashboard/blog/delete/{id}', [
         'controller' => 'BlogController',
         'action'     => 'delete',
