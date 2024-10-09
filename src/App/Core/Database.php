@@ -7,10 +7,10 @@ use PDOException;
 
 class Database
 {
-    private $host = 'localhost';
-    private $dbname = 'mvc';
+    private $host = 'jiro-db';
+    private $dbname = '	agitated_brown';
     private $username = 'root';
-    private $password = '';
+    private $password = '5z05nkCvRNhFTR3Kw12DooaK';
     private $pdo;
     private static $instance = null;
 
