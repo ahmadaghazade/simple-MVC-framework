@@ -47,7 +47,7 @@ class BrandController
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes))
             {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/brands/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/brands/';
                 $destinationPath = $uploadFileDirection . $fileName;
                 $realFilePath = getBaseUrl() . 'uploads/brands/' . $fileName;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
@@ -83,7 +83,8 @@ class BrandController
             if (in_array($fileExtension, $allowedFileTypes))
             {
 
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/brands/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/brands/';
+//                dd($uploadFileDirection);
                 $destinationPath = $uploadFileDirection . $fileName;
                 $realFilePath = getBaseUrl() . 'uploads/brands/' . $fileName;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {

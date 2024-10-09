@@ -49,7 +49,7 @@ class BlogController
             $fileExtension    = strtolower(end($fileNameCmps));
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes)) {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/blogs/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/blogs/';
                 $destinationPath     = $uploadFileDirection . $fileName;
                 $realFilePath        = getBaseUrl() . 'uploads/blogs/' . $fileName;
                 $data['main_image']  = $realFilePath;
@@ -97,7 +97,7 @@ class BlogController
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes))
             {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/blogs/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/blogs/';
                 $destinationPath = $uploadFileDirection . $fileName;
                 $realFilePath = getBaseUrl() . 'uploads/blogs/' . $fileName;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {

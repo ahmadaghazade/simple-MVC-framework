@@ -42,7 +42,7 @@ class PageContentController
             $fileExtension    = strtolower(end($fileNameCmps));
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes)) {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/page_content/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/page_content/';
                 $destinationPath     = $uploadFileDirection . $fileName;
                 $realFilePath        = getBaseUrl() . 'uploads/page_content/' . $fileName;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
@@ -119,9 +119,9 @@ class PageContentController
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes))
             {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/services/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/page_content/';
                 $destinationPath = $uploadFileDirection . $fileName;
-                $realFilePath = getBaseUrl() . 'uploads/services/' . $fileName;
+                $realFilePath = getBaseUrl() . 'uploads/page_content/' . $fileName;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
                     $requestedData = requestedData();
                     $requestedData["main_image"] = $realFilePath;
@@ -131,7 +131,7 @@ class PageContentController
                         echo "File is successfully uploaded.";
                         // You can store the file path in the database if needed
                         // $this->saveImagePathToDatabase($dest_path);
-                        header('Location: /admin/dashboard/services');
+                        header('Location: /admin/dashboard/page_content');
                     }
 
                 } else {

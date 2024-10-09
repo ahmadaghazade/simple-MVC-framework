@@ -49,7 +49,7 @@ class ServiceController
             $fileExtension    = strtolower(end($fileNameCmps));
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes)) {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/services/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/services/';
                 $destinationPath     = $uploadFileDirection . $fileName;
                 $realFilePath        = getBaseUrl() . 'uploads/services/' . $fileName;
                 $data['main_image']  = $realFilePath;
@@ -93,7 +93,7 @@ class ServiceController
             $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
             if (in_array($fileExtension, $allowedFileTypes))
             {
-                $uploadFileDirection = __DIR__ . '/../../../public/uploads/services/';
+                $uploadFileDirection = __DIR__ . '/../../../uploads/services/';
                 $destinationPath = $uploadFileDirection . $fileName;
                 $realFilePath = getBaseUrl() . 'uploads/services/' . $fileName;
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
