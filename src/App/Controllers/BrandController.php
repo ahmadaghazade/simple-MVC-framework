@@ -87,7 +87,6 @@ class BrandController
 //                dd($uploadFileDirection);
                 $destinationPath = $uploadFileDirection . $fileName;
                 $realFilePath = getBaseUrl() . 'uploads/brands/' . $fileName;
-                dd($realFilePath);
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
                     $this->insertFileIntoDb($realFilePath);
                     echo "File is successfully uploaded.";
